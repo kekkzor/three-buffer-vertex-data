@@ -40,7 +40,7 @@ function updateAttribute (attrib, data, itemSize, dtype) {
     // create a new array with desired type
     data = flatten(data, dtype)
 
-    var needsNewBuffer = attrib && typeof attrib.setArray !== 'function'
+    var needsNewBuffer = attrib && typeof attrib.setAttribute !== 'function'
     if (!attrib || needsNewBuffer) {
       // We are on an old version of ThreeJS which can't
       // support growing / shrinking buffers, so we need
@@ -68,8 +68,8 @@ function updateAttribute (attrib, data, itemSize, dtype) {
     // New versions of ThreeJS suggest using setArray
     // to change the data. It will use bufferData internally,
     // so you can change the array size without any issues
-    if (typeof attrib.setArray === 'function') {
-      attrib.setArray(data)
+    if (typeof attrib.setAttribute  === 'function') {
+      attrib.setAttribute(data)
     }
 
     return attrib
